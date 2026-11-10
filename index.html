@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Maam Ladel!</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Georgia, serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 15px;
+    background: #100c09;
+    overflow-x: hidden;
+}
+
+/* SINGLE BACKGROUND PICTURE */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background: #100c09;
+}
+
+.background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: -1;
+}
+
+/* BIRTHDAY CARD */
+
+.card {
+    width: 100%;
+    max-width: 650px;
+    padding: 40px 25px;
+    text-align: center;
+    background: rgba(20,16,12,0.88);
+    border: 2px solid #d6ad53;
+    border-radius: 25px;
+    box-shadow: 0 0 40px #d6ad5350;
+    color: white;
+}
+
+.crown {
+    font-size: 55px;
+}
+
+h1 {
+    color: #f5d47e;
+    font-size: clamp(38px, 8vw, 65px);
+    margin: 12px 0;
+    text-shadow: 0 0 15px #d6ad53;
+}
+
+.subtitle {
+    color: #f5dca5;
+    font-size: 17px;
+}
+
+.cake {
+    font-size: 80px;
+    margin: 20px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.message {
+    background: rgba(255,255,255,0.09);
+    border: 1px solid #b8954d;
+    border-radius: 18px;
+    padding: 25px;
+    color: #fff0d0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 25px 0;
+}
+
+button {
+    background: linear-gradient(90deg, #b78a36, #f5d47e);
+    color: #21170a;
+    border: none;
+    padding: 17px 28px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px #f5d47e;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#surprise {
+    color: #f5d47e;
+    font-size: 19px;
+    line-height: 1.7;
+    margin-top: 25px;
+}
+
+.footer {
+    color: #d8bd82;
+    font-size: 13px;
+    margin-top: 25px;
+}
+
+/* MONEY AND CONFETTI */
+
+.falling {
+    position: fixed;
+    top: -70px;
+    z-index: 9999;
+    pointer-events: none;
+    animation: moneyFall linear forwards;
+}
+
+@keyframes moneyFall {
+    0% {
+        transform: translateY(-5vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(115vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND PICTURE -->
+
+<div class="background">
+    <img src="photo1.png" alt="Birthday photo">
+</div>
+
+<div class="overlay"></div>
+
+<!-- BIRTHDAY GREETING -->
+
+<div class="card">
+
+    <div class="crown">👑</div>
+
+    <p style="letter-spacing:4px;color:#f5d47e;">
+        ✨ MAAM LADEL'S SPECIAL DAY ✨
+    </p>
+
+    <h1>HAPPY BIRTHDAY!</h1>
+
+    <p class="subtitle">
+        To the fabulous Maam Ladel 🖤
+    </p>
+
+    <div class="cake">🎂</div>
+
+    <div class="message">
+
+        Today is all about celebrating beautiful,
+        strong, fabulous, and unstoppable women!
+
+        <br><br>
+
+        May your lives be filled with endless happiness,
+        good health, success, unforgettable adventures,
+        and beautiful memories.
+
+        <br><br>
+
+        May your crowns never fall, your confidence
+        never fade, and your friendship remain priceless.
+
+        <br><br>
+
+        May your bank accounts grow bigger,
+        your problems become smaller,
+        and your blessings multiply every day!
+
+        <br><br>
+
+        Stay classy, stay fabulous, and keep ruling
+        your own little empire!
+
+        <br><br>
+
+        <b>HAPPY BIRTHDAY, Maam Ladel 👑💛</b>
+
+    </div>
+
+    <button onclick="showSurprise()">
+        🎁 OPEN YOUR SPECIAL SURPRISE!
+    </button>
+
+    <div id="surprise"></div>
+
+    <div class="footer">
+        👑 Born to Rule • Made to Shine 👑
+        <br><br>
+        Made with ♥ and birthday magic
+    </div>
+
+</div>
+
+<script>
+
+function showSurprise() {
+
+    document.getElementById("surprise").innerHTML =
+    "💰 JACKPOT, QUEENS! 💰<br><br>" +
+    "May money chase you, blessings locate you, " +
+    "and your bank accounts never run out! " +
+    "Keep shining and ruling! 👑💸🎉";
+
+    // MONEY RAIN
+
+    const money = ["💵", "💸", "💰", "🤑", "💵"];
+
+    for (let i = 0; i < 120; i++) {
+
+        let bill = document.createElement("div");
+
+        bill.className = "falling";
+
+        bill.innerHTML =
+        money[Math.floor(Math.random() * money.length)];
+
+        bill.style.left = Math.random() * 100 + "vw";
+
+        bill.style.fontSize =
+        (25 + Math.random() * 40) + "px";
+
+        bill.style.animationDuration =
+        (3 + Math.random() * 4) + "s";
+
+        document.body.appendChild(bill);
+
+        setTimeout(() => bill.remove(), 7500);
+    }
+
+    // GOLDEN CONFETTI AND SPARKLES
+
+    const decorations = [
+        "✨", "👑", "🎉", "💛", "🎊", "⭐"
+    ];
+
+    for (let i = 0; i < 80; i++) {
+
+        let confetti = document.createElement("div");
+
+        confetti.className = "falling";
+
+        confetti.innerHTML =
+        decorations[Math.floor(Math.random() * decorations.length)];
+
+        confetti.style.left = Math.random() * 100 + "vw";
+
+        confetti.style.fontSize = "25px";
+
+        confetti.style.animationDuration =
+        (3 + Math.random() * 4) + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 7500);
+    }
+
+}
+
+</script>
+
+</body>
+</html>
